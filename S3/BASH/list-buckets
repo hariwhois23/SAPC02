@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+ 
+
+# uses JQ to filter the output according to the need
+# Listing the buckets (Newly created First  -> Last sequence)
+
+aws s3api list-buckets | jq '.Buckets | sort_by(.CreationDate) | reverse | .[] | .Name'

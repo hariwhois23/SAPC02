@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e
+ 
+if [ -z "$1" ]; then
+    echo "Give a bucket name"
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    echo "Give a file name"
+    exit 1
+fi
+
+BUCKET_NAME=$1
+FILE_NAME=$2
+
+#The basename command extracts the filename from the path
+#In bash a command is run inside paranthesis if related to a variable 
+OBJECT_KEY=$(basename "$2")
+
+aws s3api put-object \
+--bucket $1 \
+--key $OBJECT_KEY \
+--body $FILE_NAME

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+ 
+if [ -z "$1" ]; then
+    echo "Give a bucket name"
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    echo "Give a file name"
+    exit 1
+fi
+
+Bucket_name=$1
+file_name=$2
+
+# Folders can also be deleted using the following script
+
+aws s3api delete-object \
+--bucket $Bucket_name \
+--key $file_name
