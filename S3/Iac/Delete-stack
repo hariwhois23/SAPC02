@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+echo "=== Deleting the stack"
+
+if [ -z "$1" ]; then
+echo "stack name cannot be empty"
+fi
+
+STACK_NAME=$1
+
+aws cloudformation delete-stack \
+--stack-name $STACK_NAME

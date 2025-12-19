@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e 
+
+echo " Deploying---- "
+
+if [ -z "$1" ]; then 
+    echo "Give path of the template file"
+    exit 1
+fi
+
+
+if [ -z "$2" ]; then 
+    echo "Give name for the stack"
+    exit 1
+fi
+
+FILE=$1
+STACK_NAME=$2
+
+
+aws cloudformation deploy \
+--template-file $FILE \
+--region ap-south-1 \
+--stack-name $STACK_NAME
